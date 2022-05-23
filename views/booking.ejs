@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Booking</title>
+
+    <%- include("partials/headers")  %> 
+    
+    <link rel="stylesheet" href="styles/badminton_booking.css">
+
+</head>
+<body>
+    
+    <%- include("partials/navbar")  %> 
+    
+    <div class="Body">
+
+        <div class="Bookings">
+            <hr>
+            <h1>Show Booked Slots</h1>
+    
+            <form action="/<%=sport%>" method="get">
+                <input type="date" class="mb-4" name="date" required id="date1">
+                <input type="submit" value="Show Slots">
+            </form>
+    
+            <h2>Booked Slots</h2>
+            <div id="app">
+                <h4 class="app-title">- <%= bookedSlots.length  %>   results</h4>
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+    
+                            <% bookedSlots.forEach(element => { %>
+                             
+                                <li class="list-group-item">
+                                    <h6> <%= element.date.toDateString() %></h6>
+                                    <h6> At <%= element.starthours %> for a duration of <%= element.duration %> hours</h6>
+                                </li>
+    
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <p class="footer"> These <%= `${bookedSlots.length}`  %> were added recently. Check back soon for updates</p>
+            </div>
+            <hr>
+        </div>
+        
+        
+        <form class="form" style="width: 500px;" action="/booking" method="post">
+            <hr>
+            <h1> <%= sport %> Slot Booking</h1>
+
+            <div class="input-group mb-4">
+                <span class="input-group-text" id="basic-addon1">#</span>
+                <input type="text" class="form-control" placeholder="Your ID no  eg: SE20UCSE158" aria-label="ID" name="id" required>
+            </div>
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Your username" aria-label="Your's email" name="email1" required>
+                <span class="input-group-text" id="basic-addon1">@mahindrauniversity.edu.in</span>
+            </div>
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Player 2 username" aria-label="Your's email" name="email2" >
+                <span class="input-group-text" id="basic-addon2">@mahindrauniversity.edu.in</span>
+            </div>
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Player 3 username" aria-label="Your's email" name="email3">
+                <span class="input-group-text" id="basic-addon3">@mahindrauniversity.edu.in</span>
+            </div>
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Player 4 username" aria-label="Your's email" name="email4" >
+                <span class="input-group-text" id="basic-addon4">@mahindrauniversity.edu.in</span>
+            </div>
+            
+            <select class="form-select mb-3" aria-label="Select no of hours" name="duration" required>
+                <option value="1">One hour</option>
+                <option value="2">Two hours</option>
+            </select>
+
+            <select class="form-select mb-3" name="sport" readonly >
+                <option value="<%=sport%>" selected><%=sport%></option>
+            </select>
+            
+
+            <input type="date" class="mb-4" name="date" required id="date">
+
+            <select name="starthours" id="starthours">
+
+            </select>
+            
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <hr>
+        </form>
+        
+        
+
+        
+
+    </div>
+
+    <script>
+
+        function getDate(today) {
+            let dd = today.getDate();
+            let mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+            let yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+
+            let today1 = yyyy+'-'+mm+'-'+dd;
+            return today1;
+        }
+
+        let day1 = new Date();
+        let day2 = new Date();
+        day2.setDate(day1.getDate()+2);
+        console.log(day2);
+        document.getElementById("date").setAttribute("min", getDate(day1));
+        document.getElementById("date").setAttribute("max", getDate(day2));
+        document.getElementById("date1").setAttribute("min", getDate(day1));
+        document.getElementById("date1").setAttribute("max", getDate(day2));
+
+
+        for(var i = 6.0; i < 22.5; i += 0.5) {
+            var option = document.createElement("option");
+            option.innerHTML = "" + parseInt(i);
+            option.value = ""+i;
+            if(parseInt(i)!=i){
+                option.innerHTML += ":30"
+            }
+            // option.innerHTML += (i<12?' AM': ' PM');
+            document.getElementById('starthours').appendChild(option);
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

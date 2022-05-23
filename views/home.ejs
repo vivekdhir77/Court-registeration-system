@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUGo</title>
+
+    <%- include("partials/headers")  %> 
+
+    <link rel="stylesheet" href="styles/index.css">
+
+</head>
+<body>
+    <%- include("partials/navbar")  %> 
+    
+    <div class="container">
+
+        <a href="/Badminton">
+            <button ><img class="sports" src="./pictures/badminton.jpeg" alt="badminton"></button>
+        </a>
+        <a href="/Gym">
+            <button><img class="sports" src="./pictures/gym.jpeg" alt="gym"></button>
+        </a>
+        <a href="/Billards">
+            <button><img class="sports" src="./pictures/billards.jpeg" alt="pool-table"></button>
+        </a>
+        <a href="/Tennis">
+            <button><img class="sports" src="./pictures/tennis.jpeg" alt="tennis"></button>
+        </a>
+
+    </div>
+
+
+
+    <%- include("partials/scripts")  %>
+
+</body>
+</html>

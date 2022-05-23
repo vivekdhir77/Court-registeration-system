@@ -1,0 +1,16 @@
+.Body{
+    margin: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+.Bookings{
+    width: 400px;
+    margin-right: 26px;
+}
+
+.form{
+    margin-left: 26px;
+    width: 250px;
+}
